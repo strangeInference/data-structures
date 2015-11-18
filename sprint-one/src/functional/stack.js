@@ -18,7 +18,7 @@ var Stack = function() {
   };
 
   someInstance.size = function() {
-    return size;
+    return size >= 0 ? size : 0;
   };
 
   return someInstance;
