@@ -14,13 +14,31 @@ var LinkedList = function() {
     }
     // update LinkedList with new node
     else {
-      list.tail.next = node;
-      list.tail = node;
+      this.tail.next = node;
+      this.tail = node;
     }
   };
 
   list.removeHead = function() {
+    // if LinkedList has 0 values
+    if (this.head === null){
+      return;
+    }
 
+    // if LinkedList has 1 value
+    else if (this.head.next === null) {
+      var temp = this.head.value;
+      this.head = null;
+      this.tail = null;
+      return temp;
+    }
+
+    // if LinkedList has more than 1 value
+    else {
+      var temp = this.head.value;
+      this.head = this.head.next;
+      return temp;
+    }
   };
 
   list.contains = function(target) {
