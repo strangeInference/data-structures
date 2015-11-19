@@ -13,11 +13,19 @@ var GraphNode = function(value){
 // ------------------------
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
+  var temp = new GraphNode(node);
+  this.nodeList.push(temp);
 };
 
 // ------------------------
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
 Graph.prototype.contains = function(node) {
+  for (var i = 0; i < this.nodeList.length; i++){
+    if(this.nodeList[i].value === node){
+      return true;
+    }
+  }
+  return false;
 };
 
 // ------------------------
