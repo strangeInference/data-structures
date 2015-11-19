@@ -10,6 +10,13 @@ Stack.prototype.push = function(val) {
   this.stackSize++;
 }
 
+Stack.prototype.pop = function() {
+  var temp = this.storage[this.stackSize-1];
+  delete this.storage[this.stackSize-1];
+  this.stackSize--;
+  return temp;
+}
+
 Stack.prototype.size = function(){
   return this.stackSize >= 0 ? this.stackSize : 0;
 }
