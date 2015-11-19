@@ -42,6 +42,15 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
+    var current = this.head;
+    // loop through LinkedList, searching for target value
+    while (current !== null) {
+      if (current.value === target) {
+        return true;
+      }
+      current = current.next;
+    }
+    return false;
   };
 
   return list;
