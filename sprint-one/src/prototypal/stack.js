@@ -7,6 +7,10 @@ var Stack = function() {
 };
 
 var stackMethods = {
+  push: function(val) {
+    this[this.stackSize] = val;
+    this.stackSize++;
+  },
   size: function(){
     return this.stackSize >= 0 ? this.stackSize : 0;
   }
