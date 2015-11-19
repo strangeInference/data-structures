@@ -1,6 +1,7 @@
 var Tree = function(value) {
   // delegate failed lookups to treeMethods object
-  var newTree = Object.create(treeMethods);
+  var newTree = {};
+  _.extend(newTree,treeMethods);
   newTree.value = value;
 
   // your code here
