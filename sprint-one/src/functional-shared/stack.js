@@ -14,7 +14,7 @@ var stackMethods = {
   },
 
   pop: function(){
-    var temp = this[this.stackSize];
+    var temp = this[this.stackSize-1];
     delete this[this.stackSize];
     this.stackSize--;
     return temp;
