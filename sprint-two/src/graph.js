@@ -3,6 +3,11 @@
 // ------------------------
 // Instantiate a new graph
 var Graph = function() {
+  this.nodeList = [];
+};
+var GraphNode = function(value){
+ this.value = value;
+ this.connections = [];
 };
 
 // ------------------------
