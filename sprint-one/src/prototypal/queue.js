@@ -7,6 +7,11 @@ var Queue = function() {
 };
 
 var queueMethods = {
+  enqueue: function(val){
+    this[this.queueSize] = val;
+    this.queueSize++;
+  },
+
   size: function(){
     return this.queueSize >= 0 ? this.queueSize : 0;
   }
