@@ -8,41 +8,41 @@ var LinkedList = function() {
     var node = Node(value);
     
     // if LinkedList is empty
-    if (this.head === null) {
-      this.head = node;
-      this.tail = node;
+    if (list.head === null) {
+      list.head = node;
+      list.tail = node;
     }
     // update LinkedList with new node
     else {
-      this.tail.next = node;
-      this.tail = node;
+      list.tail.next = node;
+      list.tail = node;
     }
   };
 
   list.removeHead = function() {
     // if LinkedList has 0 values
-    if (this.head === null){
+    if (list.head === null){
       return;
     }
 
     // if LinkedList has 1 value
-    else if (this.head.next === null) {
-      var temp = this.head.value;
-      this.head = null;
-      this.tail = null;
+    else if (list.head.next === null) {
+      var temp = list.head.value;
+      list.head = null;
+      list.tail = null;
       return temp;
     }
 
     // if LinkedList has more than 1 value
     else {
-      var temp = this.head.value;
-      this.head = this.head.next;
+      var temp = list.head.value;
+      list.head = list.head.next;
       return temp;
     }
   };
 
   list.contains = function(target) {
-    var current = this.head;
+    var current = list.head;
     // loop through LinkedList, searching for target value
     while (current !== null) {
       if (current.value === target) {
