@@ -11,7 +11,8 @@ setPrototype.add = function(item) {
 };
 
 setPrototype.contains = function(item) {
-  return item in this._storage;
+  //return item in this._storage also works;
+  return (this._storage[item] !== undefined);
 };
 
 setPrototype.remove = function(item) {
@@ -22,6 +23,6 @@ setPrototype.remove = function(item) {
  * Complexity: What is the time complexity of the above functions?
  */
 /*  add(): O(1)
-    contains(): O(n)
+    contains(): O(1)
     remove(): O(1)
 */
