@@ -1,8 +1,9 @@
 
 
-var HashTable = function() {
-  this._limit = 8;
+var HashTable = function(limit) {
+  this._limit = limit || 8;
   this._storage = LimitedArray(this._limit);
+  this._size = 0;
 };
 
 HashTable.prototype.insert = function(k, v) {
@@ -10,16 +11,14 @@ HashTable.prototype.insert = function(k, v) {
   var tupleArray = [k, v];
   // if hashTable is undefined at index, then add a new object
   if (this._storage.get(index) === undefined) {
-    //tupleArrar.push([])
-    //this._storage.set(index, );
     this._storage.set(index, []);
   }
   // if hashTable is defined at index, then augment existing object
-  /*
-  else {
-    this._storage.get(index)[k] = v;
-  }*/
   this._storage.get(index).push(tupleArray);
+  this._size++;
+  if (this._size / this._limit > 0.75) {
+    this.resize(Math.floor(this._limit * 2));
+  }
 };
 
 HashTable.prototype.retrieve = function(k) {
@@ -42,6 +41,24 @@ HashTable.prototype.remove = function(k) {
     }
   });
   this._storage.set(index, storage);
+  this._size--;
+  if (this._size / this._limit < 0.25) {
+    this.resize(Math.floor(this._limit / 2));
+  }
+};
+
+HashTable.prototype.resize = function(limit) {
+  // iterate through storage and rerun the hash function with new limit
+  var newHash = new HashTable(limit);
+  for (var i=0; i<this._limit; i++) {
+    if (this._storage.get(i) !== undefined) {
+      for (var j=0; j<this._storage.get(i).length; j++) {
+        newHash.insert(this._storage.get(i)[j][0], this._storage.get(i)[j][1]);
+      }
+    }
+  }
+  this._limit = limit;
+  this._storage = newHash._storage;
 };
 
 
