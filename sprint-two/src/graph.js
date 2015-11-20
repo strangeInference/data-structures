@@ -113,23 +113,25 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
   this.nodeList[fromNodeIndex].connections = fromConnections.slice(0, fromConnectionsIndex) + fromConnections.slice(fromConnectionsIndex + 1);
   this.nodeList[toNodeIndex].connections = toConnections.slice(0, toConnectionsIndex) + toConnections.slice(toConnectionsIndex + 1);
 
-  // find the fromNode
-  // look through fromNode.connections to find toNode
-  // remove toNode from fromNode.connections
-  // look through toNode.connections to find fromNode
-  // remove fromNode from toNode.connections
-
-  // look through nodeList for both nodes
-
 };
 
 // ------------------------
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
+  _.each(this.nodeList, function(node) {
+    cb(node.value);
+  });
 };
 
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+/* addNode(): O(1),
+   contains(): O(n),
+   removeNode(): O(n),
+   hasEdge(): O(n*m),
+   addEdge(): O(n),
+   removeEdge(): O(n),
+   forEachNode(): O(n), depending on the callback function.
 
 
