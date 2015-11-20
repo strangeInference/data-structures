@@ -133,5 +133,5 @@ Graph.prototype.forEachNode = function(cb) {
    addEdge(): O(n),
    removeEdge(): O(n),
    forEachNode(): O(n), depending on the callback function.
-
+*/
 
