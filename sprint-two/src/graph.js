@@ -89,28 +89,28 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
     }
   });
 
+  // variables to store connection lists to avoid typing it all out repeatedly
   var fromConnections = this.nodeList[fromNodeIndex].connections;
   var toConnections = this.nodeList[toNodeIndex].connections;
 
+  // find indices of opposite nodes in connection lists
   var fromConnectionsIndex;
   var toConnectionsIndex;
 
   _.each(fromConnections, function(node, i) {
     if (node.value === toNode) {
-      //fromConnections = fromConnections.slice(0, i) + fromConnections.slice(i + 1);  
       fromConnectionsIndex = i;
     }
   });
 
-  this.nodeList[fromNodeIndex].connections = fromConnections.slice(0, fromConnectionsIndex) + fromConnections.slice(fromConnectionsIndex + 1);
-  
   _.each(toConnections, function(node, i) {
     if (node.value === fromNode) {
-      //toConnections = toConnections.slice(0, i) + toConnections.slice(i + 1);  
       toConnectionsIndex = i;
     }
   });
 
+  // remove nodes from connection lists
+  this.nodeList[fromNodeIndex].connections = fromConnections.slice(0, fromConnectionsIndex) + fromConnections.slice(fromConnectionsIndex + 1);
   this.nodeList[toNodeIndex].connections = toConnections.slice(0, toConnectionsIndex) + toConnections.slice(toConnectionsIndex + 1);
 
   // find the fromNode
