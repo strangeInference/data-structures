@@ -35,9 +35,17 @@ var DoublyLinkedList = function() {
 
   list.addToHead = function(value) {
     var node = doubleNode(value);
-    node.next = list.head;
-    list.head.previous = node;
-    list.head = node;
+    // if list is empty
+    if (list.head === null) {
+      list.head = node;
+      list.tail = node;
+    }
+    // if list is not empty
+    else {
+      list.head.previous = node;
+      node.next = list.head;
+      list.head = node;
+    }
   };
 
   list.removeTail = function() {
