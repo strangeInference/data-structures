@@ -13,10 +13,40 @@ var DoublyLinkedList = function() {
     // update LinkedList with new node
     else {
       list.tail.next = node;
-      node.prev = list.tail;
+      node.previous = list.tail;
       list.tail = node;
     }
   };
+
+  list.removeHead = function() {
+    var temp = list.head;
+    // if list has only one item
+    if (list.head === list.tail) {
+      list.head = null;
+      list.tail = null;
+    }
+    // if list had more than one item
+    else {
+      list.head = list.head.next;
+      list.head.previous = null;
+    }
+    return temp.value;
+  };
+
+  list.addToHead = function(value) {
+    var node = doubleNode(value);
+    node.next = list.head;
+    list.head.previous = node;
+    list.head = node;
+  };
+
+  list.removeTail = function() {
+
+  };
+  list.contains = function() {
+
+  };
+  return list;
 
 //   list.removeHead = function() {
 //     // if LinkedList has 0 values
@@ -61,7 +91,7 @@ var doubleNode = function(value) {
 
   node.value = value;
   node.next = null;
-  node.prev = null;
+  node.previous = null;
 
   return node;
 };
