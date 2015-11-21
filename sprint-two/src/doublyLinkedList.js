@@ -49,10 +49,30 @@ var DoublyLinkedList = function() {
   };
 
   list.removeTail = function() {
+    var temp = list.tail;
+    // if list has only one item
+    if (list.head === list.tail) {
+      list.head = null;
+      list.tail = null;
+    }
+    // if list had more than one item
+    else {
+      list.tail = list.tail.previous;
+      list.tail.next = null;
+    }
+    return temp.value;
 
   };
-  list.contains = function() {
-
+  list.contains = function(target) {
+    var current = list.head;
+    // loop through DoublyLinkedList, searching for target value
+    while (current !== null) {
+      if (current.value === target) {
+        return true;
+      }
+      current = current.next;
+    }
+    return false;
   };
   return list;
 
