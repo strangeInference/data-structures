@@ -59,6 +59,33 @@ BinarySearchTree.prototype.depthFirstLog = function(cb) {
   subFunction(this);
 };
 
+BinarySearchTree.prototype.breadthFirstLog = function(cb) {
+  var tree = [this];
+  var subFunction = function(children) {
+    // create new children array
+    var newChildren = [];
+    // iterate over the trees in the children
+    for (var i=0; i<children.length; i++) {
+      // callback(each child)
+      cb(children[i].value);
+      // add each child to new children array
+      if (children[i].left !== null) {
+        newChildren.push(children[i].left);
+      }
+      if (children[i].right !== null) {
+        newChildren.push(children[i].right);
+      }
+    }
+
+    // subfunction(children)
+    if (newChildren.length > 0) {
+      subFunction(newChildren);
+    }
+
+  };  
+  subFunction(tree);
+}
+
 
 /*
  * Complexity: What is the time complexity of the above functions?
